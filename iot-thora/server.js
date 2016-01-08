@@ -5,19 +5,25 @@ var vlc = require("./vlc");
 var baseApi = "http://api.cineprowl.com";
 
 var playMovie = function(payload) {
-    req.getJSON(baseApi + "/movies/search/" + payload.title)
-    .then(function(movies) {
-        if (movies.length) {
-            return req.getJSON(baseApi + "/movies/" + movies[0].id);
-        } else {
-            return null;
-        }
-    })
-    .then(function(movie) {
-        if (movie) {
-            vlc.play(movie.file.filepath)
-        }
-    })
+		console.log("play-movie: " + payload.title)
+	if (payload.title) {
+	    req.getJSON(baseApi + "/movies/search/" + payload.title)
+	    .then(function(movies) {
+	        if (movies.length) {
+	            return req.getJSON(baseApi + "/movies/" + movies[0].id);
+	        } else {
+	            return null;
+	        }
+	    })
+	    .then(function(movie) {
+	        if (movie) {
+	            vlc.play(movie.file.filepath)
+	        }
+	    })		
+	} else {
+		iotEvents.trigger("unpause-movie", {}, "thora")
+	}
+
 };
 
 iotEvents.subscribe("play-movie", playMovie)
