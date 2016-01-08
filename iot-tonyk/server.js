@@ -5,7 +5,11 @@ var universalRemote = require("./universalRemote");
 var server = http.createServer(function(req, res) {})
 
 var handleMacro = function(payload) {
-    
+    if (!payload || !payload.macro) return;
+    var macro = universalRemote.macros[payload.macro];
+    if(macro) {
+        universalRemote.executeMacro(macro);
+    }
 }
 
 var handleRemoteCommand = function(payload) {
