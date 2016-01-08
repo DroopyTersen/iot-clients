@@ -36,7 +36,7 @@ var duplicateMacroCommands = function(remoteName, button, count) {
 
 var macros = {
     turnUp: duplicateMacroCommands(remotes.soundbar.name, soundbarButtons.volumeUp, 5),
-    turnDown: duplicateMacroCommands(remotes.soundbar.name, soundbarButtons.volumeUp, 5),
+    turnDown: duplicateMacroCommands(remotes.soundbar.name, soundbarButtons.volumeDown, 5),
     togglePower: [{
         remote: remotes.soundbar.name,
         button: soundbarButtons.power
