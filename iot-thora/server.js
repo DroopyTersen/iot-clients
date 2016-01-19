@@ -20,7 +20,13 @@ var playMovie = function(payload) {
 	            vlc.play(movie.file.filepath)
 	        }
 	    })		
-	} else {
+	} else if (payload.id) {
+        req.getJSON(baseApi + "movies/" + payload.id).then(function(movie){
+            if (movie) {
+                vlc.play(movie.file.filepath);
+            }
+        })  
+    } else {
 		iotEvents.trigger("unpause-movie", {}, "thora")
 	}
 
