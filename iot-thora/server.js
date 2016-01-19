@@ -5,7 +5,7 @@ var vlc = require("./vlc");
 var baseApi = "http://api.cineprowl.com";
 
 var playMovie = function(payload) {
-		console.log("play-movie: " + payload.title)
+		console.log(payload)
 	if (payload.title) {
 	    req.getJSON(baseApi + "/movies/search/" + payload.title)
 	    .then(function(movies) {
@@ -21,7 +21,7 @@ var playMovie = function(payload) {
 	        }
 	    })		
 	} else if (payload.id) {
-        req.getJSON(baseApi + "movies/" + payload.id).then(function(movie){
+        req.getJSON(baseApi + "/movies/" + payload.id).then(function(movie){
             if (movie) {
                 vlc.play(movie.file.filepath);
             }
