@@ -2,6 +2,7 @@ var http = require("http");
 var req = new (require("droopy-http"))();
 var iotEvents = require("droopy-iot").create("thora");
 var vlc = require("./vlc");
+var chrome = require("./chrome");
 var baseApi = "http://api.cineprowl.com";
 
 var playMovie = function(payload) {
@@ -32,9 +33,17 @@ var playMovie = function(payload) {
 
 };
 
+var handleChromeRequest = function(payload) {
+    if (payload && payload.command) {
+        chrome.launch(payload.command, payload.param)
+    }
+    console.log(payload);
+};
+
 iotEvents.subscribe("play-movie", playMovie)
 iotEvents.subscribe("pause-movie", vlc.pause)
 iotEvents.subscribe("unpause-movie", vlc.unpause)
+iotEvents.subscribe("launch-chrome", handleChromeRequest)
 
 
 var server = http.createServer(function(req, res) {})
