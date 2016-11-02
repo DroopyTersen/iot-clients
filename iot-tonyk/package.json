@@ -9,6 +9,6 @@
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "droopy-iot": "^1.0.1"
+    "droopy-iot": "^2.0.0"
   }
 }

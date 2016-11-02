@@ -1,5 +1,5 @@
 const http = require('http');
-var iotEvents = require("droopy-iot").create("tonyk");
+var iotEvents = require("droopy-iot").register("tonyk");
 var universalRemote = require("./universalRemote");
 
 var server = http.createServer(function(req, res) {})
