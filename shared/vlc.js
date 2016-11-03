@@ -2,6 +2,8 @@ var VlcService = require("droopy-vlc");
 var vlcService = new VlcService("http://:rival5sof@localhost:8080");
 var exec = require('child_process').exec;
 var fs = require("fs");
+var path = require("path");
+
 var exePaths = [
     'C:\\Program Files\\VideoLAN\\VLC\\vlc.exe',
     'C:\\Program Files (x86)\\VideoLAN\\VLC\\vlc.exe'
@@ -36,7 +38,18 @@ var killVlc = function () {
         console.log("kill catch");
     }
 };
+
+var ensureFile = function(filepath) {
+    var resolvedPath = path.resolve(filepath);
+    if (!fs.existsSync(resolvedPath) && filepath.startsWith("/mnt")) {
+        resolvedPath = filepath.replace("/mnt/nas-movies", "\\\\ix4-300d\\movies");
+        resolvedPath = path.resolve(resolvedPath);
+    }
+    return resolvedPath;
+};
+
 vlcService.play = function(filepath) {
+    filepath = ensureFile(filepath);
     vlcService.status().then(function(status){
         if(status) {
             killVlc();
