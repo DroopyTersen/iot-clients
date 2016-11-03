@@ -2,6 +2,7 @@ var exec = require('child_process').exec;
 var exePath = '"C:\\Users\\Andrew\\AppData\\Local\\Google\\Chrome\\Application\\chrome.exe"'
 
 var urls = {
+	hbo: "https://hbonow.com",
 	netflix: "http://www.netflix.com",
 	netflixQueue: "http://www.netflix.com/browse/my-list",
 	netflixSearch: "http://www.netflix.com/search/",
@@ -9,7 +10,7 @@ var urls = {
 	spotifySearch: "https://play.spotify.com/search/",
 	imdbSearch: "http://www.imdb.com/find?q=",
 	youtubeSearch: "https://www.youtube.com/results?search_query=",
-	torrentSearch: "https://kat.cr/usearch/"
+	torrentSearch: "https://thepiratebay.org/search/"
 };
 
 var launchChrome = function(urlKey, param) {

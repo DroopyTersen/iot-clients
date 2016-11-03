@@ -2,9 +2,8 @@ var VlcService = require("droopy-vlc");
 var vlcService = new VlcService("http://:rival5sof@localhost:8080");
 var exec = require('child_process').exec;
 
-//var exePath = '"C:\\Program Files\\VideoLAN\\VLC\\vlc.exe"'
+// var exePath = '"C:\\Program Files\\VideoLAN\\VLC\\vlc.exe"'
 var exePath = '"C:\\Program Files (x86)\\VideoLAN\\VLC\\vlc.exe"'
-// exePath: '"C:\\Program Files (x86)\\VideoLAN\\VLC\\vlc.exe"'
 
 var launchVlc = function (filepath) {
     var params = " -f " + " \"" + filepath + "\" --extraintf http";

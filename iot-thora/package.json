@@ -2,15 +2,17 @@
   "name": "iot-thora",
   "version": "1.0.0",
   "description": "",
-  "main": "index.js",
+  "main": "serer.js",
   "scripts": {
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "author": "",
   "license": "ISC",
   "dependencies": {
-    "droopy-http": "0.0.1",
-    "droopy-iot": "^1.0.0",
-    "droopy-vlc": "0.0.6"
+    "droopy-iot": "^2.1.4",
+    "droopy-vlc": "0.0.6",
+    "fuse.js": "^2.5.0",
+    "request": "^2.78.0",
+    "request-promise-native": "^1.0.3"
   }
 }
