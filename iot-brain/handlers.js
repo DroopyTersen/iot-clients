@@ -1,7 +1,6 @@
-var Fuse = require("fuse.js");
 var request = require("request-promise-native");
-var vlc = require("./vlc");
-var chrome = require("./chrome");
+var vlc = require("../../shared/vlc");
+var chrome = require("../../shared/chrome");
 var baseApi = "http://api.cineprowl.com";
 
 var _api = function(path) {
@@ -13,7 +12,7 @@ var _api = function(path) {
 };
 
 var searchMovie = function(title) {
-    return _api("/movies?$top=2000&$select=title, id, file/filepath, id").then(movies => {
+    return _api("/movies/search/" + title).then(movies => {
         var options = {
             shouldSort: true,
             threshold: 0.4,
@@ -31,7 +30,7 @@ var playMovie = exports.playMovie = function(payload) {
     console.log(payload);
     // if payload has a title, search for the movie and play it
 	if (payload.title) {
-        searchMovie(payload.title)
+        _api("/movies/search/" + payload.title)
 	    .then(function(movies) {
             
 	        if (movies && movies.length) {

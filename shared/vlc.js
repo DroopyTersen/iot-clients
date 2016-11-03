@@ -1,14 +1,21 @@
 var VlcService = require("droopy-vlc");
 var vlcService = new VlcService("http://:rival5sof@localhost:8080");
 var exec = require('child_process').exec;
-
-// var exePath = '"C:\\Program Files\\VideoLAN\\VLC\\vlc.exe"'
-var exePath = '"C:\\Program Files (x86)\\VideoLAN\\VLC\\vlc.exe"'
+var fs = require("fs");
+var exePaths = [
+    'C:\\Program Files\\VideoLAN\\VLC\\vlc.exe',
+    'C:\\Program Files (x86)\\VideoLAN\\VLC\\vlc.exe'
+];
+// var exePath = 
+var exePath = exePaths.find(p => {
+    console.log(fs.existsSync(p));
+    return fs.existsSync(p);
+});
 
 var launchVlc = function (filepath) {
     var params = " -f " + " \"" + filepath + "\" --extraintf http";
 
-    exec(exePath + params, function (err, stdout, stderr) {
+    exec(`"${exePath}" ${params}`, function (err, stdout, stderr) {
         if (err) {
             console.log(err);
             console.log(stderr);

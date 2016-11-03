@@ -1,8 +1,7 @@
-var exec = require('child_process').exec;
-var exePath = '"C:\\Users\\Andrew\\AppData\\Local\\Google\\Chrome\\Application\\chrome.exe"'
+var open = require("open");
 
 var urls = {
-	hbo: "https://hbonow.com",
+	hbo: "http://hbonow.com",
 	netflix: "http://www.netflix.com",
 	netflixQueue: "http://www.netflix.com/browse/my-list",
 	netflixSearch: "http://www.netflix.com/search/",
@@ -16,11 +15,7 @@ var urls = {
 var launchChrome = function(urlKey, param) {
 	param = param || "";
 	param = encodeURIComponent(param);
-	if (urls[urlKey]) {
-		exec(exePath + " " + urls[urlKey] + param, function(err) {
-			if (err) console.log(err);
-		});
-	}
+	if (urls[urlKey]) open(urls[urlKey] + param);
 };
 
 module.exports = {

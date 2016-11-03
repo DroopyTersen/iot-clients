@@ -5,6 +5,7 @@ var universalRemote = require("./universalRemote");
 var server = http.createServer(function(req, res) {})
 
 var handleMacro = function(payload) {
+    iotEvents.trigger("event-received", payload);
     if (!payload || !payload.macro) return;
     var macro = universalRemote.macros[payload.macro];
     if(macro) {
@@ -13,6 +14,7 @@ var handleMacro = function(payload) {
 }
 
 var handleRemoteCommand = function(payload) {
+    iotEvents.trigger("event-received", payload);
     if (!payload || !payload.remote || !payload.button) return;
     
     var remote = universalRemote.remotes[payload.remote];
